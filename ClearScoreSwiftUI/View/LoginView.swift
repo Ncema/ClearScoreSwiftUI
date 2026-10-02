@@ -51,9 +51,11 @@ struct LoginView: View {
                         lineWidth: 1)
             )
             .padding(.horizontal, 20)
+            .navigationBarBackButtonHidden(true)
             .navigationDestination(isPresented: $navigateToHome) {
                 HomeView(viewModel: viewModel)
             }
+           
             NavigationLink {
                       RegistrationView(viewModel: viewModel)
                    } label: {

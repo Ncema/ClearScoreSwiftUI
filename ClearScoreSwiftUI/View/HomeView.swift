@@ -37,9 +37,11 @@ struct HomeView: View {
             .task {
                 viewModel.fetchScore()
             }
+            .navigationBarBackButtonHidden(true)
             .navigationDestination(isPresented: $goToDetails) {
                 DetailView(viewModel: viewModel)
             }
+            
             // LOADER OVERLAY
             if viewModel.isLoading {
                 Color.black.opacity(0.3)
