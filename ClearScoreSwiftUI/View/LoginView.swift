@@ -55,7 +55,6 @@ struct LoginView: View {
             .navigationDestination(isPresented: $navigateToHome) {
                 HomeView(viewModel: viewModel)
             }
-           
             NavigationLink {
                       RegistrationView(viewModel: viewModel)
                    } label: {
