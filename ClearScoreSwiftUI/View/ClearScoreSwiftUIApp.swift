@@ -9,6 +9,13 @@ import SwiftUI
 
 @main
 struct ClearScoreSwiftUIApp: App {
+    @StateObject public var viewModel: ClearScoreViewModel
+    
+    init() {
+           let service = DataService()
+           _viewModel = StateObject(wrappedValue: ClearScoreViewModel(service: service))
+       }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
