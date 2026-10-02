@@ -29,6 +29,7 @@ struct HomeView: View {
 
                     Text("\(viewModel.scoreModel?.creditReportInfo?.score ?? 0)")
                         .font(.system(size: 40, weight: .bold))
+                        .foregroundStyle(.red)
 
                     Text("out of \(viewModel.scoreModel?.creditReportInfo?.maxScoreValue ?? 0)")
                         .font(.subheadline)
@@ -114,7 +115,7 @@ final class AnimatedCircleUIView: UIView {
     // MARK: - Gradient Border
     private func setupGradientBorder() {
 
-        shapeLayer.fillColor = UIColor.white.cgColor
+        shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.strokeColor = UIColor.black.cgColor
         shapeLayer.lineWidth = 8
         shapeLayer.lineCap = .round
