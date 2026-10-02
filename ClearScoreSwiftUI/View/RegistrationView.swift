@@ -15,6 +15,8 @@ struct RegistrationView: View {
     @State private var cellNumber = ""
     @State private var password = ""
     @State private var confirmPassword = ""
+    @State private var navigateToHome = false
+    @StateObject var viewModel: ClearScoreViewModel
     
     var body: some View {
         ScrollView {
@@ -63,7 +65,7 @@ struct RegistrationView: View {
                 )
                 
                 Button(action: {
-                    // Register action
+                    navigateToHome = true
                 }) {
                     Text("Register")
                         .font(.system(size: 15, weight: .semibold))
@@ -79,9 +81,11 @@ struct RegistrationView: View {
                         )
                 )
                 .padding(.horizontal, 20)
-                
+                .navigationDestination(isPresented: $navigateToHome) {
+                    HomeView(viewModel: viewModel)
+                }
                 NavigationLink {
-                    LoginView()
+                    LoginView(viewModel: viewModel)
                 } label: {
                     Text("Already have an account? Sign In")
                         .font(.system(size: 15))
@@ -96,9 +100,9 @@ struct RegistrationView: View {
     }
 }
 
-#Preview {
-    NavigationStack {
-        RegistrationView()
-    }
-}
+//#Preview {
+//    NavigationStack {
+//        RegistrationView()
+//    }
+//}
 

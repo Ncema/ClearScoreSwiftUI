@@ -10,8 +10,7 @@ import UIKit
 import Lottie
 
 struct HomeView: View {
-
-    var circleTapped: () -> Void = {}
+    @State private var goToDetails = false
     @ObservedObject var viewModel: ClearScoreViewModel
 
     var body: some View {
@@ -20,7 +19,7 @@ struct HomeView: View {
                 AnimatedCircleView()
                     .frame(width: 300, height: 300)
                     .onTapGesture {
-                        circleTapped()
+                        goToDetails = true
                     }
 
                 VStack(spacing: 10) {
@@ -38,7 +37,9 @@ struct HomeView: View {
             .task {
                 viewModel.fetchScore()
             }
-
+            .navigationDestination(isPresented: $goToDetails) {
+                DetailView(viewModel: viewModel)
+            }
             // LOADER OVERLAY
             if viewModel.isLoading {
                 Color.black.opacity(0.3)

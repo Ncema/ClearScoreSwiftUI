@@ -10,6 +10,8 @@ import SwiftUI
 struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
+    @State private var navigateToHome = false
+    @StateObject  var viewModel: ClearScoreViewModel
     
     var body: some View {
         VStack(alignment: .leading, spacing: 30) {
@@ -34,7 +36,7 @@ struct LoginView: View {
                 systemImage: "lock")
             
             Button(action: {
-                
+                navigateToHome = true
             }) {
                 Text("Login")
                     .font(.system(size: 15, weight: .semibold))
@@ -49,9 +51,11 @@ struct LoginView: View {
                         lineWidth: 1)
             )
             .padding(.horizontal, 20)
-            
+            .navigationDestination(isPresented: $navigateToHome) {
+                HomeView(viewModel: viewModel)
+            }
             NavigationLink {
-                       //SignUpView()
+                      RegistrationView(viewModel: viewModel)
                    } label: {
                        Text("Don't have an account? Sign Up")
                            .font(.system(size: 15))
@@ -63,6 +67,6 @@ struct LoginView: View {
     }
 }
 
-#Preview {
-    LoginView()
-}
+//#Preview {
+//    LoginView()
+//}

@@ -11,7 +11,6 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var isActive = false
-    @State private var goToDetails = false
     @StateObject private var viewModel: ClearScoreViewModel
 
     init() {
@@ -24,16 +23,10 @@ struct ContentView: View {
             ZStack {
                 
                 if isActive {
-                    HomeView(circleTapped: {
-                            goToDetails = true},
-                        viewModel: viewModel
-                    )
+                    RegistrationView(viewModel: viewModel)
                 } else {
                     SplashView()
                 }
-            }
-            .navigationDestination(isPresented: $goToDetails) {
-                DetailView(viewModel: viewModel)
             }
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
